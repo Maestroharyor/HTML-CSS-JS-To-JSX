@@ -1,3 +1,4 @@
+import { For } from "solid-js";
 import ProductCard from "./components/ProductCard";
 
 function App() {
@@ -22,10 +23,8 @@ function App() {
     },
   ];
   return (
-    <main className="w-full min-h-screen flex flex-col lg:flex-row  gap-8 py-10 items-center justify-center">
-      {products.map((product) => (
-        <ProductCard key={product.name} {...product} />
-      ))}
+    <main class="w-full min-h-screen flex flex-col lg:flex-row  gap-8 py-10 items-center justify-center">
+      <For each={products}>{(product) => <ProductCard {...product} />}</For>
     </main>
   );
 }

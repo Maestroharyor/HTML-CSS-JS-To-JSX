@@ -1,7 +1,7 @@
-import { For } from "solid-js";
-import ProductCard from "./components/ProductCard";
+import { component$ } from "@builder.io/qwik";
+import { ProductCard } from "./components/ProductCard";
 
-function App() {
+export const App = component$(() => {
   const products = [
     {
       name: "Robot Toy",
@@ -22,11 +22,12 @@ function App() {
       price: 35.99,
     },
   ];
+
   return (
     <main class="w-full min-h-screen flex flex-col lg:flex-row  gap-8 py-10 items-center justify-center">
-      <For each={products}>{(product) => <ProductCard {...product} />}</For>
+      {products.map((product) => (
+        <ProductCard key={product.name} {...product} />
+      ))}
     </main>
   );
-}
-
-export default App;
+});

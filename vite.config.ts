@@ -1,6 +1,11 @@
 import { defineConfig } from 'vite'
-import solid from 'vite-plugin-solid'
+import { qwikVite } from '@builder.io/qwik/optimizer'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [solid()],
+  plugins: [
+    qwikVite({
+      csr: true,
+    }),
+  ],
 })

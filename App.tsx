@@ -1,7 +1,9 @@
-import { component$ } from "@builder.io/qwik";
-import { ProductCard } from "./components/ProductCard";
+import React from "react";
+import { ScrollView, StyleSheet, SafeAreaView } from "react-native";
+import ProductCard from "./components/ProductCard";
+import { StatusBar } from "expo-status-bar";
 
-export const App = component$(() => {
+function App() {
   const products = [
     {
       name: "Robot Toy",
@@ -24,10 +26,26 @@ export const App = component$(() => {
   ];
 
   return (
-    <main class="w-full min-h-screen flex flex-col lg:flex-row  gap-8 py-10 items-center justify-center">
-      {products.map((product) => (
-        <ProductCard key={product.name} {...product} />
-      ))}
-    </main>
+    <>
+      <StatusBar backgroundColor="#fff" />
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView style={styles.container}>
+          {products.map((product, index) => (
+            <ProductCard key={index} {...product} />
+          ))}
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingHorizontal: 10,
+    paddingVertical: 70,
+  },
 });
+
+export default App;
